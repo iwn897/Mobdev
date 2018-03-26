@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="jm/jquery.mobile-1.4.5.css">
+		<script type="text/javascript" src="jm/jquery.js"></script>
+		<script type="text/javascript" src="jm/jquery.mobile-1.4.5.js">
+		</script>
+		<script type="text/javascript" src="jm/jquery.min.js"></script>
+		<title>Tes Mobdev</title>
+	</head>
+
+	<body>
+		<div data-role="page" id="kalkulator" >
+        <div data-role="header" data-theme="b" >
+            <h1>Kalkulator</h1>
+        </div>
+
+        
+            <div data-role="content">
+                <form class="TextCenter">
+                    Number:
+                    <input type="number" id="number"/>
+                    <br><br>
+                    <button type="button" onclick="ConvertBase.dec2bin()"/>Change to Binary</button>
+                    <button type="button" onclick="ConvertBase.dec2hex()"/>Change to HexaDecimal</button>
+                </form>
+            </div>
+
+        <div data-role="footer" data-add-back-btn="true" data-theme="b">
+            <fieldset data-role="controlgroup">
+                <legend>Menu:</legend>
+                <label for="select-native-5">Menu</label>
+                <select name="select-native-5" class="menu">
+                    <option value="#calculator">Calculator</option>
+                    <option value="#rgb">RGB</option>
+                    <option value="#rangkuman">Rangkuman</option>
+                </select>
+            </fieldset>
+        </div>
+
+    </div>
+    <div data-role="page" id="rgb" >
+        <div data-role="header" data-add-back-btn="true" data-theme="b">
+            <h1>RGB </h1>
+        </div>
+
+        <div data-role="content">
+
+            <div class="ui-grid-b">
+                <div class="ui-block-a">
+                    <label for="r">Red:</label>
+                    <input type="range" id="r" min="0" max="255" value="0">
+                </div>
+
+                <div class="ui-block-b">
+                    <label for="g">Green:</label>
+                    <input type="range" id="g" min="0" max="255" value="0">
+                </div>
+
+                <div class="ui-block-c">
+                    <label for="b">Blue:</label>
+                    <input type="range" id="b" min="0" max="255" value="0">
+                </div>
+            </div>
+
+            <button data-theme="a" class="key" id="color">Check</button>
+
+            <label for="result">Result:</label>
+            <input type="text" id="result" value="" >
+            
+        </div>
+
+        <div data-role="footer" data-add-back-btn="true" data-theme="b">
+                <legend>Menu:</legend>
+               
+                <select name="select-native-5" class="menu">
+                    <option value="#calculator">Calculator</option>
+                    <option value="#rgb">RGB</option>
+                    <option value="#rangkuman">Rangkuman</option>
+                </select>
+            </fieldset>
+        </div>
+
+    </div>
+
+    <div data-role="page" id="rangkuman" >
+        <div data-role="header" data-add-back-btn="true" data-theme="b">
+            <h1>Rangkuman Materi</h1>
+        </div>
+
+        <div data-role="content">
+            <h1>JQuery Mobile</h1>
+                        <p>Yang dipelajari dari jQuery Mobile ialah penggunaan tabs , penggunaan data-role page, penggunaan list View dll</p>
+                        <div data-role="main" class="ui-content">
+                            <h2>Jquery Mobile</h2>
+                            <ul data-role="listview">
+                              <li><a href="#">Tabs</a></li>
+                              <li><a href="https://www.quanzhanketang.com/jquerymobile/jquerymobile_pages.html">Page</a></li>
+                              <li><a href="https://www.quanzhanketang.com/jquerymobile/jquerymobile_list_views.html">List View</a></li>
+                              <li><a href="https://www.quanzhanketang.com/jquerymobile/jquerymobile_themes.html">Themes</a></li>
+                              <li><a href="https://www.quanzhanketang.com/jquerymobile/jquerymobile_form_inputs.html">Forms</a></li>
+                              <li><a href="https://www.quanzhanketang.com/jquerymobile/jquerymobile_form_sliders.html">Slider</a></li>
+                            </ul>
+                          </div>
+                       <h1>Git</h1>
+                       <br><p> Git init</p></br>
+                        <br><p> Git push -u</p></br>
+                        <br><p> Git commit -m</p></br>
+                        <br><p> Git remote origin master</p></br>
+                </div>
+                
+         <div data-role="footer" data-add-back-btn="true" data-theme="a">
+            <fieldset data-role="controlgroup">
+                <legend>Menu:</legend>
+                <label for="select-native-5">Menu</label>
+                <select name="select-native-5" class="menu">
+                    <option value="#calculator">Calculator</option>
+                    <option value="#rgb">RGB</option>
+                    <option value="#rangkuman">Rangkuman</option>
+                </select>
+            </fieldset>
+        </div> 
+        </div>
+
+    </div>
+
+    <script>
+        (function(){
+
+            var ConvertBase = function (num) {
+                return {
+                    from : function (baseFrom) {
+                        return {
+                            to : function (baseTo) {
+                                return parseInt(num, baseFrom).toString(baseTo);
+                            }
+                        };
+                    }
+                };
+            };
+            
+            ConvertBase.dec2bin = function () {
+                if(document.getElementById("number").value!=""){
+                    alert(ConvertBase(document.getElementById('number').value).from(10).to(2));
+                }else{alert("Please fill the number")}
+            };
+            
+            ConvertBase.dec2hex = function () {
+                if(document.getElementById("number").value!=""){
+                    alert(ConvertBase(document.getElementById('number').value).from(10).to(16));
+                }else{alert("Please fill the number")}
+            };
+            
+            
+            this.ConvertBase = ConvertBase;
+        
+        })(this);
+    </script>
+    <script type="text/javascript">
+
+        var input = "";
+
+        $(document).ready(function(){
+            $(".menu").change(function(){
+                window.location = $(this).val();
+            });
+
+            
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#color").click(function(){
+                $("#result").css("background-color", `rgb(${$("#r").val()},${$("#g").val()},${$("#b").val()})`);
+            });
+    </script>
+
+
+
+</body>
+</html>
